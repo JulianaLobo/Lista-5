@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 05</title>
+    <style>
+        label {
+            display: block;
+            margin-top: 20px;
+        }
+        fieldset {
+            width: 40%;
+            margin: auto;
+            padding-bottom: 20px;
+        }
+        .maxWidth {
+            width: 97%;
+        }
+        textarea {
+            margin-bottom: 20px;
+        }
+        .errorMsg {
+            font-size: 10px;
+            color: red;
+        }
+        span {
+            display: block;
+        }
+        
+    </style>
+
+    <script>
+        function validaInputs() {
+            tipos = ["TEXT", "NUMBER", "TEL"];
+            inputs = document.getElementsByTagName("input");
+            for (i = 0; i < inputs.length; i++) {
+                if (tipos.includes(inputs[i].type.toUpperCase()) && (inputs[i].value == ""))
+                    document.getElementById(`${inputs[i].name}ERROR`).innerHTML = `${inputs[i].name} está em branco. Tente novamente!`;
+            }
+        }
+
+        function limparErrorMsg(t) {
+            document.getElementById(`${t}ERROR`).innerHTML = "";
+        }
+    </script>
+</head>
+
+<body>
+    <fieldset>
+        <h2>Formulário</h2>
+        <form>
+            <label for="txtNome">Nome: </label>
+            <input class="maxWidth" type="text" name="NOME" id="txtNome" onkeypress="limparErrorMsg('NOME')">
+            <span id="NOMEERROR" class="errorMsg"></span>
+
+            <label for="txtEndereco">Endereço: </label>
+            <input class="maxWidth" type="text" name="ENDERECO" id="txtEndereco" onkeypress="limparErrorMsg('ENDERECO')">
+            <span id="ENDERECOERROR" class="errorMsg"></span>
+
+            <label for="txtTelefone">Telefone: </label>
+            <input class="maxWidth" type="tel" name="TELEFONE" id="txtTelefone" onkeypress="limparErrorMsg('TELEFONE')">
+            <span id="TELEFONEERROR" class="errorMsg"></span>
+
+            <label for="txtIdade">Idade: </label>
+            <input class="maxWidth" type="number" name="IDADE" id="txtIdade" onkeypress="limparErrorMsg('IDADE')">
+            <span id="IDADEERROR" class="errorMsg"></span>
+
+            <label for="txtAltura">Altura: </label>
+            <input class="maxWidth" type="text" name="ALTURA" id="txtAltura" onkeypress="limparErrorMsg('ALTURA')">
+            <span id="ALTURAERROR" class="errorMsg"></span>
+
+            <label for="">Feminino: </label>
+            <input type="radio" id="checkFem" name="SEXO" value="fem">
+            <span id="SEXOERROR" class="errorMsg"></span>
+
+            <label for="">Masculino: </label>
+            <input type="radio" id="checkMasc" name="SEXO" value="masc">
+            <span id="SEXOERROR" class="errorMsg"></span>
+
+            <label for="checkEstadoCivil">Estado Civil</label>
+            <select class="maxWidth" name="ESTADOCIVIL" id="checkEstadoCivil">
+                <option value="" selected disabled hidden>Selecione</option>
+                <option value="solteiro">Solteiro</option>
+                <option value="casado">Casado</option>
+                <option value="divorciado">Divorciado</option>
+                <option value="separado">Separado</option>
+                <option value="viuvo">Viúvo</option>
+            </select>
+            <span id="ESTADOCIVILERROR" class="errorMsg"></span>
+
+            <label for="">Comentário: </label>
+            <textarea class="maxWidth" name="COMENTARIO" id="" cols="30" rows="10"></textarea>
+            <span id="COMENTARIOERROR" class="errorMsg"></span>
+
+            <input type="button" name="" id="" value="Cadastrar" onclick="validaInputs()">
+            <input type="reset" name="" id="" value="Limpar">
+        </form>
+    </fieldset>
+</body>
+
+</html>
