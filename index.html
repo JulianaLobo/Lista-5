@@ -19,7 +19,7 @@
         .maxWidth {
             width: 97%;
         }
-        textarea {
+        #COMENTARIOERROR {
             margin-bottom: 20px;
         }
         .errorMsg {
@@ -34,11 +34,27 @@
 
     <script>
         function validaInputs() {
+            //Validação inputs
             tipos = ["TEXT", "NUMBER", "TEL"];
             inputs = document.getElementsByTagName("input");
             for (i = 0; i < inputs.length; i++) {
                 if (tipos.includes(inputs[i].type.toUpperCase()) && (inputs[i].value == ""))
                     document.getElementById(`${inputs[i].name}ERROR`).innerHTML = `${inputs[i].name} está em branco. Tente novamente!`;
+            }
+
+            //Validação input radio
+            if(document.getElementsByName("SEXO").value == ""){
+                document.getElementById("SEXOERROR").innerHTML = "SEXO está em branco. Tente novamente!";
+            }
+
+            //Validação select
+            if(document.getElementById("checkEstadoCivil").value == ""){
+                document.getElementById("ESTADOCIVILERROR").innerHTML = `ESTADO CIVIL está em branco. Tente novamente!`;
+            }
+
+            //Validação textarea
+            if(document.getElementById("idComentario").value == ""){
+                document.getElementById("COMENTARIOERROR").innerHTML = `COMENTÁRIO está em branco. Tente novamente!`;
             }
         }
 
@@ -72,16 +88,15 @@
             <input class="maxWidth" type="text" name="ALTURA" id="txtAltura" onkeypress="limparErrorMsg('ALTURA')">
             <span id="ALTURAERROR" class="errorMsg"></span>
 
-            <label for="">Feminino: </label>
+            <label for="checkFem">Feminino: </label>
             <input type="radio" id="checkFem" name="SEXO" value="fem">
-            <span id="SEXOERROR" class="errorMsg"></span>
 
-            <label for="">Masculino: </label>
+            <label for="checkMasc">Masculino: </label>
             <input type="radio" id="checkMasc" name="SEXO" value="masc">
             <span id="SEXOERROR" class="errorMsg"></span>
 
             <label for="checkEstadoCivil">Estado Civil</label>
-            <select class="maxWidth" name="ESTADOCIVIL" id="checkEstadoCivil">
+            <select class="maxWidth" name="ESTADOCIVIL" id="checkEstadoCivil" onchange="limparErrorMsg('ESTADOCIVIL')">
                 <option value="" selected disabled hidden>Selecione</option>
                 <option value="solteiro">Solteiro</option>
                 <option value="casado">Casado</option>
@@ -92,7 +107,7 @@
             <span id="ESTADOCIVILERROR" class="errorMsg"></span>
 
             <label for="">Comentário: </label>
-            <textarea class="maxWidth" name="COMENTARIO" id="" cols="30" rows="10"></textarea>
+            <textarea class="maxWidth" name="COMENTARIO" id="idComentario" cols="30" rows="10" onkeypress="limparErrorMsg('COMENTARIO')"></textarea>
             <span id="COMENTARIOERROR" class="errorMsg"></span>
 
             <input type="button" name="" id="" value="Cadastrar" onclick="validaInputs()">
